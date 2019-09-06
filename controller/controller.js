@@ -26,6 +26,9 @@ module.exports.signup = (req, res) => {
     req.checkBody('firstname', 'Firstname is not valid').isLength({ min: 3 }).isAlpha();
     req.checkBody('lastname', 'Lastname is not valid').isLength({ min: 3 }).isAlpha();
     req.checkBody('email', 'Email is not valid').isEmail();
+    req.checkBody('phone','phone number should be valid').isNumeric().isLength(10)
+    req.checkBody('gender', 'gender is not valid')
+    req.checkBody('dateofbirth', 'dateofbirth is not valid')
     req.checkBody('password', 'password is not valid').isLength({ min: 4 }).equals(req.body.password);
 
 

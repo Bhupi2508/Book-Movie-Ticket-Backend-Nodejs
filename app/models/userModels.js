@@ -30,6 +30,9 @@ var userSchema = new mongoSchema({
     "firstname": { type: String, required: [true, "First name is required"] },
     "lastname": { type: String, required: [true, "LastName is required"] },
     "email": { type: String, required: [true, "Email is required"] },
+    "phone": { type: String, required: [true, "phone is required"] },
+    "gender": { type: String, required: [true, "gender is required"] },
+    "dateofbirth": { type: String, required: [true, "dateofbirth is required"] },
     "password": { type: String, required: [true, "password is required"] },
 }, {
         timestamps: true
@@ -75,6 +78,9 @@ usermodel.prototype.signup = (body, callback) => {
                 "firstname": body.firstname,
                 "lastname": body.lastname,
                 "email": body.email,
+                "phone": body.phone,
+                "gender": body.gender,
+                "dateofbirth": body.dateofbirth,
                 "password": hash(body.password)
             });
             /*
@@ -169,7 +175,7 @@ usermodel.prototype.resetPassword = (req, callback) => {
             callback(err);
         }
         else {
-            console.log("result in else",result)
+            console.log("result in else", result)
             callback(null, result);
         }
     });
