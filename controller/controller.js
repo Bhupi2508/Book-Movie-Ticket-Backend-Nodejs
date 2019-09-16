@@ -26,7 +26,7 @@ module.exports.signup = (req, res) => {
     req.checkBody('firstname', 'Firstname is not valid').isLength({ min: 3 }).isAlpha();
     req.checkBody('lastname', 'Lastname is not valid').isLength({ min: 3 }).isAlpha();
     req.checkBody('email', 'Email is not valid').isEmail();
-    req.checkBody('phone','phone number should be valid').isNumeric().isLength(10)
+    req.checkBody('phone', 'phone number should be valid').isNumeric().isLength(10)
     req.checkBody('gender', 'gender is not valid')
     req.checkBody('dateofbirth', 'dateofbirth is not valid')
     req.checkBody('password', 'password is not valid').isLength({ min: 4 }).equals(req.body.password);
@@ -136,7 +136,7 @@ module.exports.forgotPassword = (req, res) => {
                 /*
                 create a token for user_id and send to snedMail and then callback
                 */
-                var token = jwt.sign({ _id: data[0]._id,email:data[0].email }, secret, { expiresIn: 86400000 });
+                var token = jwt.sign({ _id: data[0]._id, email: data[0].email }, secret, { expiresIn: 86400000 });
                 const url = `http://localhost:4200/resetPassword/${token}`;
                 console.log("url in controller ===== >", url);
 
@@ -189,13 +189,13 @@ exports.getAllUser = (req, res) => {
     userService.getAllUser(req, (err, data) => {
         var response = {};
         if (err) {
-            console.log("error");
+            console.log("error in controller ===>>>");
             return callback(err);
         } else {
             response.success = true;
             response.result = data;
             res.status(200).send(response);
-            console.log("ok.....");
+            console.log("ok controller ===>>>");
 
 
         }

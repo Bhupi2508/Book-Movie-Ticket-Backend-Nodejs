@@ -99,15 +99,15 @@ moviemodel.prototype.movieDetail = (body, callback) => {
 /*
 getAllUser function for take all the data from DataBase
 */
-// usermodel.prototype.getAllUser = (req, callback) => {
-//     user.find({}, (err, data) => {
-//         if (err) {
-//             callback("error is in model" + err)
-//         } else {
-//             callback(null, data);
-//         }
-//     })
-// }
+moviemodel.prototype.getAllMovieDetails = (req, callback) => {
+    movie.find({}, (err, data) => {
+        if (err) {
+            callback("error is in model" + err)
+        } else {
+            callback(null, data);
+        }
+    })
+}
 
 
 

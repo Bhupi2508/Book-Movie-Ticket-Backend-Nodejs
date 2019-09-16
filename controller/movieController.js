@@ -60,3 +60,26 @@ module.exports.movie = (req, res) => {
 
     }
 };
+
+/*
+getAllUser function check function if no error then provide to services
+*/
+exports.getAllMovieDetail = (req, res) => {
+    /*
+    send the req to the services and then callback
+    */
+   movieService.getAllMovieDetail(req, (err, data) => {
+        var response = {};
+        if (err) {
+            console.log("error");
+            return callback(err);
+        } else {
+            response.success = true;
+            response.result = data;
+            res.status(200).send(response);
+            console.log("ok.....");
+
+
+        }
+    })
+};
