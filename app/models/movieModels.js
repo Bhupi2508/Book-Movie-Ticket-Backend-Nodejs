@@ -32,6 +32,7 @@ var movieSchema = new mongoSchema({
     "directorName": { type: String, required: [true, "directorName is required"] },
     "rating": { type: String, required: [true, "rating is required"] },
     "details": { type: String, required: [true, "details is required"] },
+    "releaseDate": { type: Date, required: [true, "releaseDate is required"] },
     "poster": { type: String, required: [true, "poster is required"] },
 }, {
         timestamps: true
@@ -71,6 +72,7 @@ moviemodel.prototype.movieDetail = (body, callback) => {
                     "directorName": body.directorName,
                     "rating": body.rating,
                     "details": body.details,
+                    "releaseDate": body.releaseDate,
                     "poster": body.poster,
                 }
             );

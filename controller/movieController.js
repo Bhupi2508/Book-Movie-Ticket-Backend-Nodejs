@@ -28,6 +28,7 @@ module.exports.movie = (req, res) => {
     req.checkBody('directorName', 'DirectorName is not valid').isLength({ min: 3 })
     req.checkBody('rating', 'Rating should be valid').isLength({ min: 2 })
     req.checkBody('details', 'Details is not valid').isLength({ min: 15 })
+    req.checkBody('releaseDate', 'releaseDate is not valid').isLength({ min: 4 })
     //  req.checkBody('poster', 'pPoster is not valid')
 
     var errors = req.validationErrors();
