@@ -28,6 +28,7 @@ router.post('/forgotPassword', user.forgotPassword);
 router.post('/resetPassword', verify.auth, user.resetPassword);
 router.post('/movieDetail', movie.movie)
 router.get('/getMovieDetail', movie.getAllMovieDetail)
+router.post('/getMovie', movie.getMovieDetail)
 router.post('/addMessage', chatUser.addMessage)
 router.get('/getAllUser', verify.auth, user.getAllUser);
 router.get('/userMsg', chatUser.userMsg);

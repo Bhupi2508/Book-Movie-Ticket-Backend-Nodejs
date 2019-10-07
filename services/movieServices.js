@@ -55,6 +55,23 @@ exports.getAllMovieDetail = (req, callback) => {
     })
 }
 
+
+/*
+for get movie details from the database
+*/
+exports.getMovieDetail = (req, callback) => {
+    /*
+   send data to model and callback from there and here both
+   */
+    movieModel.getMovieDetails(req, (err, data) => {
+        if (err) {
+            return callback(err);
+        } else {
+            return callback(null, data);
+        }
+    })
+}
+
 /*
 get user message from the data base and to the frontend
 */

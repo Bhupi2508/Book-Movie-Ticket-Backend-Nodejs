@@ -112,5 +112,22 @@ moviemodel.prototype.getAllMovieDetails = (req, callback) => {
 }
 
 
+/*
+getMovie detail function for take movie the data from DataBase
+*/
+moviemodel.prototype.getMovieDetails = (req, callback) => {
+
+   // console.log("movieName", body);
+    
+    movie.find({ "movieName": req.body.movieName }, (err, data) => {
+        if (err) {
+            callback("error is in Moviemodel" + err)
+        } else {
+           // console.log("data in models==>", data);
+            callback(null, data);
+        }
+    })
+}
+
 
 module.exports = new moviemodel();
