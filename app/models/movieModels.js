@@ -34,6 +34,7 @@ var movieSchema = new mongoSchema({
     "details": { type: String, required: [true, "details is required"] },
     "releaseDate": { type: Date, required: [true, "releaseDate is required"] },
     "poster": { type: String, required: [true, "poster is required"] },
+    "trailer": { type: String, required: [true, "trailer link is required"] },
 }, {
         timestamps: true
     });
@@ -74,6 +75,7 @@ moviemodel.prototype.movieDetail = (body, callback) => {
                     "details": body.details,
                     "releaseDate": body.releaseDate,
                     "poster": body.poster,
+                    "trailer":body.trailer
                 }
             );
             /*
@@ -117,17 +119,55 @@ getMovie detail function for take movie the data from DataBase
 */
 moviemodel.prototype.getMovieDetails = (req, callback) => {
 
-   // console.log("movieName", body);
-    
+    //  console.log("movieName", req.body);
     movie.find({ "movieName": req.body.movieName }, (err, data) => {
         if (err) {
             callback("error is in Moviemodel" + err)
         } else {
-           // console.log("data in models==>", data);
+            // console.log("data in models==>", data);
             callback(null, data);
         }
     })
 }
 
+
+/*
+getTrailers detail function for take movie the data from DataBase
+*/
+moviemodel.prototype.getTrailers = (req, callback) => {
+
+    //  console.log("movieName", req.body);
+    movie.find({ "movieName": req.body.movieName }, (err, data) => {
+        if (err) {
+            callback("error is in Moviemodel" + err)
+        } else {
+            // console.log("data in models==>", data);
+            callback(null, data);
+        }
+    })
+}
+
+
+// moviemodel.prototype.getMovieDetails = (body, callback) => {
+
+//     /*
+//     check whether email is already exists or not
+//     */
+//    console.log("body", body);
+
+//    movie.find({ "movieName": body.movieName }, (err, data) => {
+//         if (err) {
+//             console.log("Error in getMovieDetails movie schema ");
+//             return callback(err);
+//         } else {
+//             console.log("movieName", body.movieName);
+//             console.log("data save successfully", data);
+//             console.log("registered successfully");
+//             callback(null, data);
+//             console.log("no return statements ..registered successfully");
+
+//         }
+//     })
+// }
 
 module.exports = new moviemodel();

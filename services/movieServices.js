@@ -72,6 +72,23 @@ exports.getMovieDetail = (req, callback) => {
     })
 }
 
+
+/*
+for get Trailers details from the database
+*/
+exports.gettrailers = (req, callback) => {
+    /*
+   send data to model and callback from there and here both
+   */
+    movieModel.getTrailers(req, (err, data) => {
+        if (err) {
+            return callback(err);
+        } else {
+            return callback(null, data);
+        }
+    })
+}
+
 /*
 get user message from the data base and to the frontend
 */

@@ -29,7 +29,8 @@ module.exports.movie = (req, res) => {
     req.checkBody('rating', 'Rating should be valid').isLength({ min: 2 })
     req.checkBody('details', 'Details is not valid').isLength({ min: 15 })
     req.checkBody('releaseDate', 'releaseDate is not valid').isLength({ min: 4 })
-    req.checkBody('poster', 'pPoster is not valid')
+    req.checkBody('poster', 'Poster is not valid')
+    req.checkBody('trailer','Trailer link is not valid')
 
     var errors = req.validationErrors();
     var response = {};
@@ -86,13 +87,34 @@ exports.getAllMovieDetail = (req, res) => {
 };
 
 /*
-getMovieDetails function check function if no error then provide to services
+getMovieDetail function check function if no error then provide to services
 */
 exports.getMovieDetail = (req, res) => {
     /*
     send the req to the services and then callback
     */
     movieService.getMovieDetail(req, (err, data) => {
+        var response = {};
+        if (err) {
+            console.log("error");
+            return callback(err);
+        } else {
+            response.success = true;
+            response.result = data;
+            res.status(200).send(response);
+           console.log("ok.....", response);
+        }
+    })
+};
+
+/*
+getMovieDetail function check function if no error then provide to services
+*/
+exports.getTrailer = (req, res) => {
+    /*
+    send the req to the services and then callback
+    */
+    movieService.gettrailers(req, (err, data) => {
         var response = {};
         if (err) {
             console.log("error");
