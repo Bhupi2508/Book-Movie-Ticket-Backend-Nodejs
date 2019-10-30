@@ -28,7 +28,7 @@ define schema and validations
 */
 var seatSchema = new mongoSchema({
     "movieName": { type: String, required: [true, "movie name is required"] },
-    "bookedSeat": { type: String, required: [true, "bookedSeat is required"] },
+    "bookedSeat": [{ type: String, required: [true, "bookedSeat is required"] }],
     "time": { type: String, required: [true, "time is required"] },
     "date": { type: String, required: [true, "date is required"] },
     "place": { type: String, required: [true, "place is required"] },
@@ -46,47 +46,45 @@ var seats = mongoose.model('seats', seatSchema);
 creata a signup function 
 */
 seatmodel.prototype.seatBooked = (body, callback) => {
+    console.log("movieName", body.movieName)
+    console.log( "bookedSeat",body.bookedSeat),
+   console.log("body=========>           ",body)
 
     /*
     check whether email is already exists or not
     */
-    user.find({ 'email': body.email }, (err, data) => {
+    seats.find({ 'movieName': body.movieName, 'time': body.time, 'date': body.date }, (err, data) => {
         if (err) {
-            console.log("Error in signup user schema ");
+            console.log("Error in seatBooked seats schema ");
             return callback(err);
-        } else if (data.length > 0) {
-            console.log("Email already exists!")
-            var response = { "error": true, "message": "Email already exists ", "errorCode": 404 };
+        } else if (data.length == 0) {
+            console.log("data  length",data.length)
+            console.log("data",data)
+            console.log("No movie Available")
+            var response = { "error": true, "message": "No movie Available", "errorCode": 404 };
             return callback(response);
         }
         /*
         if email is not there then create a new account
         */
         else {
-            const newUser = new user({
-
-                "firstname": body.firstname,
-                "lastname": body.lastname,
-                "email": body.email,
-                "phone": body.phone,
-                "gender": body.gender,
-                "dateofbirth": body.dateofbirth,
-                "password": hash(body.password)
-            });
+            // const newUser = new user({
+            //     "bookedSeat": body.bookedSeat,
+            // });
             /*
             then save the new data
             */
-            newUser.save((err, result) => {
+            seats.update({ 'movieName': body.movieName, 'time': body.time, 'date': body.date },{"$push": { "bookedSeat": body.bookedSeat }},(err, result) => {
                 if (err) {
                     console.log("error came");
                     console.log("error in model file", err);
                     return callback(err);
                 } else {
-                    console.log(body.firstname);
-                    console.log("data save successfully", result);
-                    console.log("registered successfully");
+                    console.log(body.bookedSeat);
+                    console.log("data update successfully", result);
+                    console.log("bookedSeat successfully");
                     callback(null, result);
-                    console.log("no return statements ..registered successfully");
+                    console.log("no return statements ..bookedSeat successfully");
 
                 }
             })
