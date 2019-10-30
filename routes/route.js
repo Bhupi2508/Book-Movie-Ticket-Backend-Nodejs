@@ -20,6 +20,7 @@ var verify = require('../authantication/index');
 const user = require('../controller/controller')
 const movie = require('../controller/movieController')
 const chatUser = require('../controller/chatController')
+const seat = require('../controller/seatController')
 const express = require('express');
 const router = express.Router();
 router.post('/login', user.login);
@@ -30,6 +31,7 @@ router.post('/movieDetail', movie.movie)
 router.get('/getMovieDetail', movie.getAllMovieDetail)
 router.post('/getMovie', movie.getMovieDetail)
 router.post('/getTrailer', movie.getTrailer)
+router.post('/seats',seat.seats)
 router.post('/addMessage', chatUser.addMessage)
 router.get('/getAllUser', verify.auth, user.getAllUser);
 router.get('/userMsg', chatUser.userMsg);
