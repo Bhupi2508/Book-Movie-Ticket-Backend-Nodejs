@@ -39,3 +39,19 @@ exports.seats = (req, callback) => {
     })
 }
 
+/*
+for get Trailers details from the database
+*/
+exports.getSeats = (req, callback) => {
+    /*
+   send data to model and callback from there and here both
+   */
+  seatModel.getSeats(req, (err, data) => {
+        if (err) {
+            return callback(err);
+        } else {
+            return callback(null, data);
+        }
+    })
+}
+

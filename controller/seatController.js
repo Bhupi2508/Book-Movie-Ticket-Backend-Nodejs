@@ -17,8 +17,7 @@
 required files
 */
 var seatService = require('../services/seatServices');
-var jwt = require('jsonwebtoken');
-var sendmail = require('../middleware/sendMail');
+
 /*
 signup function and provide some validations
 */
@@ -58,4 +57,26 @@ module.exports.seats = (req, res) => {
         });
 
     }
+};
+
+
+/*
+getBookedSeats function check function if no error then provide to services
+*/
+exports.getSeats = (req, res) => {
+    /*
+    send the req to the services and then callback
+    */
+    seatService.getSeats(req, (err, data) => {
+        var response = {};
+        if (err) {
+            console.log("error");
+            return callback(err);
+        } else {
+            response.success = true;
+            response.result = data;
+            res.status(200).send(response);
+            console.log("ok.....", response);
+        }
+    })
 };

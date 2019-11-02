@@ -94,5 +94,22 @@ seatmodel.prototype.seatBooked = (body, callback) => {
 }
 
 
+/*
+getSeats detail function for take movie the data from DataBase
+*/
+seatmodel.prototype.getSeats = (req, callback) => {
+
+    //  console.log("movieName", req.body);
+    seats.find({ "movieName": req.body.movieName }, (err, data) => {
+        if (err) {
+            callback("error is in Seatmodel" + err)
+        } else {
+            // console.log("data in models==>", data);
+            callback(null, data);
+        }
+    })
+}
+
+
 
 module.exports = new seatmodel();
