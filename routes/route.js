@@ -35,6 +35,7 @@ router.post('/seats',seat.seats)
 router.post('/addMessage', chatUser.addMessage)
 router.get('/getAllUser', verify.auth, user.getAllUser);
 router.get('/userMsg', chatUser.userMsg);
+router.get('getSeatBooked', seat.getSeats)
 
 
 module.exports = router;
